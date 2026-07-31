@@ -1,0 +1,28 @@
+import { cars } from './data/cars'
+import { PrismaClient } from '@/src/generated/prisma/client'
+import { PrismaPg } from "@prisma/adapter-pg"
+import "dotenv/config";
+
+export const connectionString = process.env.DATABASE_URL;
+export const adapter = new PrismaPg({ connectionString });
+const prisma = new PrismaClient({adapter})
+
+async function main() {
+    try {
+        await prisma.car.createMany({
+            data: cars
+        })
+        console.log('Seed ejecutado correctamente')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+main().then(async () => {
+    await prisma.$disconnect()
+})
+.catch(async(e) => {
+    console.log(e)
+    await prisma.$disconnect()
+    process.exit(1)
+})
