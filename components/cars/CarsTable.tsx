@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 import CarInfoModal from "./CarInfoModal"
 import { updateStatusCar } from "@/actions/update-carstatus-action"
 import { deleteCar } from "@/actions/delete-car-action"
+import ConfirmDialog from "../ui/ConfirmDialog"
 
 type CarsTableProps = {
     cars: Car[]
@@ -19,18 +20,17 @@ export default function CarsTable({cars}: CarsTableProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [carInfo, setCarInfo] = useState("")
 
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [selectedCarId, setSelectedCarId] = useState<number | null>(null);
+
   const handleModal = async(paymentMethod: string) => {
     setIsOpen(false)
   }
 
-  const handleDeleteClick = async(id: number) => {
-    const confirmed = window.confirm(
-        `¿Estás seguro que deseas eliminar el vehículo?`
-    )
+const handleDeleteClick = async() => {
+    if (!selectedCarId) return
 
-    if (!confirmed) return
-
-    const result = await deleteCar(id)
+    const result = await deleteCar(selectedCarId)
 
     if (!result.success) {
         toast.error("No se pudo eliminar el vehículo")
@@ -115,8 +115,11 @@ export default function CarsTable({cars}: CarsTableProps) {
                                                 {!car.fechaVenta && (
                                                     <CheckIcon onClick={() => handleMarkClick(car.id)} className='w-4 h-4 text-amber-500 hover:text-amber-600' />
                                                 )}
-                                                <button onClick={() => handleDeleteClick(car.id)} className="text-red-600 hover:text-red-800">
-                                                    <TrashIcon className='w-4 h-4' />
+                                                {/* <button onClick={() => handleDeleteClick(car.id)} className="text-red-600 hover:text-red-800"> */}
+                                                <button className="text-red-600 hover:text-red-800" onClick={() => {
+                                                        setSelectedCarId(car.id);
+                                                        setIsDeleteOpen(true);
+                                                    }}><TrashIcon className='w-4 h-4' />
                                                 </button>
                                             </div>
                                         </td>
@@ -133,6 +136,19 @@ export default function CarsTable({cars}: CarsTableProps) {
             onClose={() => setIsOpen(false)}
             onConfirm={handleModal}
             carInfo={carInfo}
+        />
+
+        <ConfirmDialog
+            isOpen={isDeleteOpen}
+            title="Eliminar vehículo"
+            message="¿Estás seguro de eliminar este vehículo? Esta acción no se puede deshacer."
+            confirmText="Eliminar"
+            cancelText="Cancelar"
+            onClose={() => {
+                setIsDeleteOpen(false);
+                setSelectedCarId(null);
+            }}
+            onConfirm={handleDeleteClick}
         />
     </>
   )
