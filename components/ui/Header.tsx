@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Logo from "./Logo";
 import Title from "./Title";
-import RedesSociales from "./RedesSociales";
-
 
 export default function Header() {
   return (
@@ -13,7 +11,7 @@ export default function Header() {
         </div>
 
         <div className="flex justify-center">
-          <Title>Autos Valdez</Title>
+          <a href="/admin"><Title>Autos Valdez</Title></a>
         </div>
 
         <div className="flex justify-center md:justify-end gap-3">

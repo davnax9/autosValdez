@@ -8,6 +8,7 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import CarInfoModal from "./CarInfoModal"
 import { updateStatusCar } from "@/actions/update-carstatus-action"
+import { deleteCar } from "@/actions/delete-car-action"
 
 type CarsTableProps = {
     cars: Car[]
@@ -22,8 +23,21 @@ export default function CarsTable({cars}: CarsTableProps) {
     setIsOpen(false)
   }
 
-  const handleDeleteClick = (id: number) => {
-    console.log("ok")
+  const handleDeleteClick = async(id: number) => {
+    const confirmed = window.confirm(
+        `¿Estás seguro que deseas eliminar el vehículo?`
+    )
+
+    if (!confirmed) return
+
+    const result = await deleteCar(id)
+
+    if (!result.success) {
+        toast.error("No se pudo eliminar el vehículo")
+        return
+    }
+
+    toast.success("Vehículo eliminado correctamente")
   }
 
   const handleMarkClick = async(id:number) => {
