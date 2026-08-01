@@ -397,7 +397,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Car: 'Car'
+  Car: 'Car',
+  Contact: 'Contact'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "car"
+    modelProps: "car" | "contact"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -491,6 +492,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Contact: {
+      payload: Prisma.$ContactPayload<ExtArgs>
+      fields: Prisma.ContactFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContactFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContactFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        findFirst: {
+          args: Prisma.ContactFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContactFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        findMany: {
+          args: Prisma.ContactFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>[]
+        }
+        create: {
+          args: Prisma.ContactCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        createMany: {
+          args: Prisma.ContactCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContactCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>[]
+        }
+        delete: {
+          args: Prisma.ContactDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        update: {
+          args: Prisma.ContactUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        deleteMany: {
+          args: Prisma.ContactDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContactUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContactUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>[]
+        }
+        upsert: {
+          args: Prisma.ContactUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        aggregate: {
+          args: Prisma.ContactAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContact>
+        }
+        groupBy: {
+          args: Prisma.ContactGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContactCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -543,6 +618,21 @@ export const CarScalarFieldEnum = {
 } as const
 
 export type CarScalarFieldEnum = (typeof CarScalarFieldEnum)[keyof typeof CarScalarFieldEnum]
+
+
+export const ContactScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  message: 'message',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  carId: 'carId'
+} as const
+
+export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -789,6 +879,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   car?: Prisma.CarOmit
+  contact?: Prisma.ContactOmit
 }
 
 /* Types for Logging */

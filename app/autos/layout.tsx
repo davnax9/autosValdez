@@ -2,6 +2,7 @@
 
 import Footer from "@/components/ui/Footer";
 import Header from "@/components/ui/Header";
+import ToastNotification from "@/components/ui/ToastNotification";
 
 
 export default async function layout({
@@ -25,7 +26,7 @@ export default async function layout({
                 </footer>
             </div>
 
-            {/* <ToastNotification /> */}
+            <ToastNotification />
         </>
     )
 }

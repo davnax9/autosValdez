@@ -13,3 +13,10 @@ export const CarSchema = z.object({
     info: z.string().trim().min(1, { message: 'La información del vehiculo no puede ir vacia'}),
     image: z.string().min(1, {message: 'La imagen es obligatoria'})
 })
+
+export const contactLeadSchema = z.object({
+    name: z.string().min(3, "El nombre debe tener mínimo 3 caracteres"),
+    phone: z.string().min(10, "El teléfono debe tener mínimo 10 números").regex(/^[0-9]+$/,"El teléfono solo debe contener números"),
+    email: z.string().email("Correo electrónico no válido").or(z.literal("")).optional(),
+    message: z.string().min(5, "La duda debe tener mínimo 5 caracteres")
+})

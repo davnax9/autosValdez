@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Car: 'Car'
+  Car: 'Car',
+  Contact: 'Contact'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -83,6 +84,21 @@ export const CarScalarFieldEnum = {
 } as const
 
 export type CarScalarFieldEnum = (typeof CarScalarFieldEnum)[keyof typeof CarScalarFieldEnum]
+
+
+export const ContactScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  message: 'message',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  carId: 'carId'
+} as const
+
+export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
 
 
 export const SortOrder = {

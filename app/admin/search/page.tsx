@@ -1,5 +1,6 @@
 import CarSearchForm from "@/components/cars/CarSearchForm"
 import CarsTable from "@/components/cars/CarsTable"
+import GoStore from "@/components/ui/GoStore"
 import prisma from "@/lib/prisma"
 
 async function searchCars(searchCar: string) {
@@ -29,12 +30,12 @@ export default async function page({searchParams}: {searchParams: Promise<{ sear
   const {search = ""} = await searchParams
   const cars = await searchCars(search)
 
-  console.log(cars)
-
   return (
     <>
         <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold my-4 mx-2 text-black text-center">Resultados de búsqueda: {search}</h1>
-
+        <div className="flex justify-end">
+            <GoStore />
+        </div>
         <div className="flex flex-col lg:flex-row lg:justify-end gap-5">
             <CarSearchForm />
         </div>

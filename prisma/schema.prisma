@@ -22,4 +22,18 @@ model Car {
   image String
   fechaVenta DateTime?
   status Boolean @default(false)
+  contactLeads Contact[]
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  email     String?
+  message   String
+  status    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  carId      Int
+  car        Car @relation(fields: [carId], references: [id], onDelete: Cascade)
 }

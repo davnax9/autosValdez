@@ -1,6 +1,7 @@
 import { Car } from "@/src/generated/prisma/client"
 import { formatCurrency, getImagePath } from "@/src/utils"
 import Image from "next/image"
+import WhatsAppButton from "../whatsapp/WhatsAppButton"
 
 type CarsCardProps = {
   car: Car
@@ -20,10 +21,11 @@ export default function CarsCard({car}: CarsCardProps) {
             <h2 className="text-xl font-black">{car.marca}-{car.modelo}<span className="text-sm">({car.anio})</span></h2>
             <p className="text-gray-600 text-justify pt-3">{car.info}</p>
             <h2 className="text-xl text-amber-500 pt-2">{formatCurrency(car.precio)}</h2>
-            <button type="button" className="bg-red-600 hover:bg-red-700 mt-5 w-full p-3 font-bold text-white text-lg rounded-lg"
+            {/* <button type="button" className="bg-red-600 hover:bg-red-700 mt-5 w-full p-3 font-bold text-white text-lg rounded-lg"
             >
                 Me interesa
-            </button>
+            </button> */}
+            <WhatsAppButton car={car}/>
         </div>
     </div>
   )
