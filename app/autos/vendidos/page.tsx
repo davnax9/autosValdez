@@ -55,9 +55,17 @@ export default async function page({searchParams}: {searchParams: Promise<{ page
 
       {cars.length === 0 && (
         <>
-            <h1 className="text-sm md:text-xl lg:text-2xl font-bold my-4 mx-2 text-black text-center">A raíz de inicio de plataforma no hay vehiculos vendidos. Para ver catalogo ir a {''}
+            <p className="text-sm md:text-xl lg:text-2xl font-bold my-4 mx-2 text-black text-center">A raíz de inicio de plataforma no hay vehiculos vendidos. Para ver catalogo ir a {''}
                 <a href="https://www.facebook.com/luismartin.valdezhernandez" className="text-blue-600" target="_blank" rel="noopener noreferrer">facebook</a>
-            </h1>
+            </p>
+        </>
+      )}
+
+      {cars.length > 0 && (
+        <>
+            <p className="text-sm md:text-xl lg:text-2xl font-bold my-4 mx-2 text-black text-center">Existe la posibilidad de que no todos los vehículos vendidos esten en esta plataforma, para ver mas acceder a {''}
+                <a href="https://www.facebook.com/luismartin.valdezhernandez" className="text-blue-600" target="_blank" rel="noopener noreferrer">facebook</a>
+            </p>
         </>
       )}
 
