@@ -47,7 +47,7 @@ export function generateWhatsAppMessage({ car, name, phone, message}: WhatsAppMe
 }
 
 export function generateWhatsAppUrl( message: string ) {
-    const phone = "526681496022"; 
+    const phone = "526681013568"; 
     // Cambia este número por el WhatsApp de Autos Valdez
 
     return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
