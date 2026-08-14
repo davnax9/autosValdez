@@ -13,12 +13,38 @@ export async function updateCar(data: unknown, id: number){
         }
     }
 
-    await prisma.car.update({
-        where: {
-            id: id
-        },
-        data: result.data
-    })
-}
+    const { images, ...carData } = result.data
 
-revalidatePath('/admin')
+    await prisma.$transaction(async (tx) => {
+
+        // 1. Actualizar información del vehículo
+        await tx.car.update({
+            where: {
+                id
+            },
+            data: carData
+        })
+
+        // 2. Eliminar las imágenes actuales
+        await tx.carImage.deleteMany({
+            where: {
+                carId: id
+            }
+        })
+
+        // 3. Crear nuevamente las imágenes actuales
+        await tx.carImage.createMany({
+            data: images.map(url => ({
+                url,
+                carId: id
+            }))
+        })
+    })
+
+    revalidatePath("/admin")
+    revalidatePath("/autos")
+
+    return {
+        success: true
+    }
+}
