@@ -398,7 +398,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Car: 'Car',
-  Contact: 'Contact'
+  Contact: 'Contact',
+  CarImage: 'CarImage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -414,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "car" | "contact"
+    modelProps: "car" | "contact" | "carImage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -566,6 +567,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CarImage: {
+      payload: Prisma.$CarImagePayload<ExtArgs>
+      fields: Prisma.CarImageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CarImageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CarImageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>
+        }
+        findFirst: {
+          args: Prisma.CarImageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CarImageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>
+        }
+        findMany: {
+          args: Prisma.CarImageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>[]
+        }
+        create: {
+          args: Prisma.CarImageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>
+        }
+        createMany: {
+          args: Prisma.CarImageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CarImageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>[]
+        }
+        delete: {
+          args: Prisma.CarImageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>
+        }
+        update: {
+          args: Prisma.CarImageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>
+        }
+        deleteMany: {
+          args: Prisma.CarImageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CarImageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CarImageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>[]
+        }
+        upsert: {
+          args: Prisma.CarImageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CarImagePayload>
+        }
+        aggregate: {
+          args: Prisma.CarImageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCarImage>
+        }
+        groupBy: {
+          args: Prisma.CarImageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CarImageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CarImageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CarImageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -612,7 +687,6 @@ export const CarScalarFieldEnum = {
   anio: 'anio',
   precio: 'precio',
   info: 'info',
-  image: 'image',
   fechaVenta: 'fechaVenta',
   status: 'status'
 } as const
@@ -633,6 +707,15 @@ export const ContactScalarFieldEnum = {
 } as const
 
 export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
+
+
+export const CarImageScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  carId: 'carId'
+} as const
+
+export type CarImageScalarFieldEnum = (typeof CarImageScalarFieldEnum)[keyof typeof CarImageScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -880,6 +963,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   car?: Prisma.CarOmit
   contact?: Prisma.ContactOmit
+  carImage?: Prisma.CarImageOmit
 }
 
 /* Types for Logging */

@@ -11,7 +11,21 @@ export async function createCar(data: unknown) {
         }
     }
 
+    const { images, ...carData } = result.data
+
     await prisma.car.create({
-        data: result.data
+        data: {
+            ...carData,
+
+            images: {
+                create: images.map(url => ({
+                    url
+                }))
+            }
+        }
     })
+
+    return {
+        success: true
+    }
 }

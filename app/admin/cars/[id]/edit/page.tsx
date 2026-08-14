@@ -7,6 +7,9 @@ async function getCarById(id: number){
     const car = await prisma.car.findUnique({
         where: {
             id: id
+        },
+        include: {
+            images: true
         }
     })
 

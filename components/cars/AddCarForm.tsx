@@ -11,14 +11,17 @@ export default function AddCarForm({children}: {children: React.ReactNode}) {
   const router = useRouter()
 
   const handleSubmit = async (formData: FormData) => {
+
     const data = {
         marca: formData.get('marca'),
         modelo: formData.get('modelo'),
         anio: formData.get('anio'),
         precio: formData.get('precio'),
         info: formData.get('info'),
-        image: formData.get('image')
+        images: formData.getAll('images')
     }
+
+    console.log(data)
     // const result = CarSchema.safeParse(data)
 
     // console.log(result)

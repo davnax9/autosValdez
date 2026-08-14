@@ -1,15 +1,15 @@
 import { Car } from "@/src/generated/prisma/client"
 import ImageUpload from "../ui/ImageUpload"
+import { CarWithImages } from "@/src/types"
 
 type CarFormPros = {
-    car?: Car
+    car?: CarWithImages
 }
 
 export default async function CarForm({car}: CarFormPros) {
 
   return (
     <>
-
         <div className="space-y-2">
             <label className="text-slate-800" htmlFor="marca">Marca:</label>
             <input id="marca" name="marca" className="block w-full p-3 bg-slate-100" placeholder="Marca" defaultValue={car?.marca}/>
@@ -35,7 +35,7 @@ export default async function CarForm({car}: CarFormPros) {
             <input id="info" name="info" className="block w-full p-3 bg-slate-100" placeholder="Información" defaultValue={car?.info}/>
         </div>
 
-        <ImageUpload image={car?.image}/>
+        <ImageUpload images={car?.images?.map(image => image.url) ?? []}/>
     </>
   )
 }

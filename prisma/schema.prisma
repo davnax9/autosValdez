@@ -19,10 +19,12 @@ model Car {
   anio String
   precio Float @default(0)
   info String
-  image String
+  // image String
   fechaVenta DateTime?
   status Boolean @default(false)
   contactLeads Contact[]
+
+  images    CarImage[]
 }
 
 model Contact {
@@ -36,4 +38,12 @@ model Contact {
   updatedAt DateTime @updatedAt
   carId      Int
   car        Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model CarImage {
+  id        Int      @id @default(autoincrement())
+  url       String
+  carId     Int
+
+  car       Car      @relation(fields: [carId], references: [id], onDelete: Cascade)
 }

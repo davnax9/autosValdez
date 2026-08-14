@@ -43,7 +43,6 @@ export type CarMinAggregateOutputType = {
   anio: string | null
   precio: number | null
   info: string | null
-  image: string | null
   fechaVenta: Date | null
   status: boolean | null
 }
@@ -55,7 +54,6 @@ export type CarMaxAggregateOutputType = {
   anio: string | null
   precio: number | null
   info: string | null
-  image: string | null
   fechaVenta: Date | null
   status: boolean | null
 }
@@ -67,7 +65,6 @@ export type CarCountAggregateOutputType = {
   anio: number
   precio: number
   info: number
-  image: number
   fechaVenta: number
   status: number
   _all: number
@@ -91,7 +88,6 @@ export type CarMinAggregateInputType = {
   anio?: true
   precio?: true
   info?: true
-  image?: true
   fechaVenta?: true
   status?: true
 }
@@ -103,7 +99,6 @@ export type CarMaxAggregateInputType = {
   anio?: true
   precio?: true
   info?: true
-  image?: true
   fechaVenta?: true
   status?: true
 }
@@ -115,7 +110,6 @@ export type CarCountAggregateInputType = {
   anio?: true
   precio?: true
   info?: true
-  image?: true
   fechaVenta?: true
   status?: true
   _all?: true
@@ -214,7 +208,6 @@ export type CarGroupByOutputType = {
   anio: string
   precio: number
   info: string
-  image: string
   fechaVenta: Date | null
   status: boolean
   _count: CarCountAggregateOutputType | null
@@ -249,10 +242,10 @@ export type CarWhereInput = {
   anio?: Prisma.StringFilter<"Car"> | string
   precio?: Prisma.FloatFilter<"Car"> | number
   info?: Prisma.StringFilter<"Car"> | string
-  image?: Prisma.StringFilter<"Car"> | string
   fechaVenta?: Prisma.DateTimeNullableFilter<"Car"> | Date | string | null
   status?: Prisma.BoolFilter<"Car"> | boolean
   contactLeads?: Prisma.ContactListRelationFilter
+  images?: Prisma.CarImageListRelationFilter
 }
 
 export type CarOrderByWithRelationInput = {
@@ -262,10 +255,10 @@ export type CarOrderByWithRelationInput = {
   anio?: Prisma.SortOrder
   precio?: Prisma.SortOrder
   info?: Prisma.SortOrder
-  image?: Prisma.SortOrder
   fechaVenta?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   contactLeads?: Prisma.ContactOrderByRelationAggregateInput
+  images?: Prisma.CarImageOrderByRelationAggregateInput
 }
 
 export type CarWhereUniqueInput = Prisma.AtLeast<{
@@ -278,10 +271,10 @@ export type CarWhereUniqueInput = Prisma.AtLeast<{
   anio?: Prisma.StringFilter<"Car"> | string
   precio?: Prisma.FloatFilter<"Car"> | number
   info?: Prisma.StringFilter<"Car"> | string
-  image?: Prisma.StringFilter<"Car"> | string
   fechaVenta?: Prisma.DateTimeNullableFilter<"Car"> | Date | string | null
   status?: Prisma.BoolFilter<"Car"> | boolean
   contactLeads?: Prisma.ContactListRelationFilter
+  images?: Prisma.CarImageListRelationFilter
 }, "id">
 
 export type CarOrderByWithAggregationInput = {
@@ -291,7 +284,6 @@ export type CarOrderByWithAggregationInput = {
   anio?: Prisma.SortOrder
   precio?: Prisma.SortOrder
   info?: Prisma.SortOrder
-  image?: Prisma.SortOrder
   fechaVenta?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   _count?: Prisma.CarCountOrderByAggregateInput
@@ -311,7 +303,6 @@ export type CarScalarWhereWithAggregatesInput = {
   anio?: Prisma.StringWithAggregatesFilter<"Car"> | string
   precio?: Prisma.FloatWithAggregatesFilter<"Car"> | number
   info?: Prisma.StringWithAggregatesFilter<"Car"> | string
-  image?: Prisma.StringWithAggregatesFilter<"Car"> | string
   fechaVenta?: Prisma.DateTimeNullableWithAggregatesFilter<"Car"> | Date | string | null
   status?: Prisma.BoolWithAggregatesFilter<"Car"> | boolean
 }
@@ -322,10 +313,10 @@ export type CarCreateInput = {
   anio: string
   precio?: number
   info: string
-  image: string
   fechaVenta?: Date | string | null
   status?: boolean
   contactLeads?: Prisma.ContactCreateNestedManyWithoutCarInput
+  images?: Prisma.CarImageCreateNestedManyWithoutCarInput
 }
 
 export type CarUncheckedCreateInput = {
@@ -335,10 +326,10 @@ export type CarUncheckedCreateInput = {
   anio: string
   precio?: number
   info: string
-  image: string
   fechaVenta?: Date | string | null
   status?: boolean
   contactLeads?: Prisma.ContactUncheckedCreateNestedManyWithoutCarInput
+  images?: Prisma.CarImageUncheckedCreateNestedManyWithoutCarInput
 }
 
 export type CarUpdateInput = {
@@ -347,10 +338,10 @@ export type CarUpdateInput = {
   anio?: Prisma.StringFieldUpdateOperationsInput | string
   precio?: Prisma.FloatFieldUpdateOperationsInput | number
   info?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.StringFieldUpdateOperationsInput | string
   fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   contactLeads?: Prisma.ContactUpdateManyWithoutCarNestedInput
+  images?: Prisma.CarImageUpdateManyWithoutCarNestedInput
 }
 
 export type CarUncheckedUpdateInput = {
@@ -360,10 +351,10 @@ export type CarUncheckedUpdateInput = {
   anio?: Prisma.StringFieldUpdateOperationsInput | string
   precio?: Prisma.FloatFieldUpdateOperationsInput | number
   info?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.StringFieldUpdateOperationsInput | string
   fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   contactLeads?: Prisma.ContactUncheckedUpdateManyWithoutCarNestedInput
+  images?: Prisma.CarImageUncheckedUpdateManyWithoutCarNestedInput
 }
 
 export type CarCreateManyInput = {
@@ -373,7 +364,6 @@ export type CarCreateManyInput = {
   anio: string
   precio?: number
   info: string
-  image: string
   fechaVenta?: Date | string | null
   status?: boolean
 }
@@ -384,7 +374,6 @@ export type CarUpdateManyMutationInput = {
   anio?: Prisma.StringFieldUpdateOperationsInput | string
   precio?: Prisma.FloatFieldUpdateOperationsInput | number
   info?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.StringFieldUpdateOperationsInput | string
   fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -396,7 +385,6 @@ export type CarUncheckedUpdateManyInput = {
   anio?: Prisma.StringFieldUpdateOperationsInput | string
   precio?: Prisma.FloatFieldUpdateOperationsInput | number
   info?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.StringFieldUpdateOperationsInput | string
   fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
@@ -408,7 +396,6 @@ export type CarCountOrderByAggregateInput = {
   anio?: Prisma.SortOrder
   precio?: Prisma.SortOrder
   info?: Prisma.SortOrder
-  image?: Prisma.SortOrder
   fechaVenta?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
@@ -425,7 +412,6 @@ export type CarMaxOrderByAggregateInput = {
   anio?: Prisma.SortOrder
   precio?: Prisma.SortOrder
   info?: Prisma.SortOrder
-  image?: Prisma.SortOrder
   fechaVenta?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
@@ -437,7 +423,6 @@ export type CarMinOrderByAggregateInput = {
   anio?: Prisma.SortOrder
   precio?: Prisma.SortOrder
   info?: Prisma.SortOrder
-  image?: Prisma.SortOrder
   fechaVenta?: Prisma.SortOrder
   status?: Prisma.SortOrder
 }
@@ -494,15 +479,29 @@ export type CarUpdateOneRequiredWithoutContactLeadsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CarUpdateToOneWithWhereWithoutContactLeadsInput, Prisma.CarUpdateWithoutContactLeadsInput>, Prisma.CarUncheckedUpdateWithoutContactLeadsInput>
 }
 
+export type CarCreateNestedOneWithoutImagesInput = {
+  create?: Prisma.XOR<Prisma.CarCreateWithoutImagesInput, Prisma.CarUncheckedCreateWithoutImagesInput>
+  connectOrCreate?: Prisma.CarCreateOrConnectWithoutImagesInput
+  connect?: Prisma.CarWhereUniqueInput
+}
+
+export type CarUpdateOneRequiredWithoutImagesNestedInput = {
+  create?: Prisma.XOR<Prisma.CarCreateWithoutImagesInput, Prisma.CarUncheckedCreateWithoutImagesInput>
+  connectOrCreate?: Prisma.CarCreateOrConnectWithoutImagesInput
+  upsert?: Prisma.CarUpsertWithoutImagesInput
+  connect?: Prisma.CarWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CarUpdateToOneWithWhereWithoutImagesInput, Prisma.CarUpdateWithoutImagesInput>, Prisma.CarUncheckedUpdateWithoutImagesInput>
+}
+
 export type CarCreateWithoutContactLeadsInput = {
   marca: string
   modelo: string
   anio: string
   precio?: number
   info: string
-  image: string
   fechaVenta?: Date | string | null
   status?: boolean
+  images?: Prisma.CarImageCreateNestedManyWithoutCarInput
 }
 
 export type CarUncheckedCreateWithoutContactLeadsInput = {
@@ -512,9 +511,9 @@ export type CarUncheckedCreateWithoutContactLeadsInput = {
   anio: string
   precio?: number
   info: string
-  image: string
   fechaVenta?: Date | string | null
   status?: boolean
+  images?: Prisma.CarImageUncheckedCreateNestedManyWithoutCarInput
 }
 
 export type CarCreateOrConnectWithoutContactLeadsInput = {
@@ -539,9 +538,9 @@ export type CarUpdateWithoutContactLeadsInput = {
   anio?: Prisma.StringFieldUpdateOperationsInput | string
   precio?: Prisma.FloatFieldUpdateOperationsInput | number
   info?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.StringFieldUpdateOperationsInput | string
   fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  images?: Prisma.CarImageUpdateManyWithoutCarNestedInput
 }
 
 export type CarUncheckedUpdateWithoutContactLeadsInput = {
@@ -551,9 +550,71 @@ export type CarUncheckedUpdateWithoutContactLeadsInput = {
   anio?: Prisma.StringFieldUpdateOperationsInput | string
   precio?: Prisma.FloatFieldUpdateOperationsInput | number
   info?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.StringFieldUpdateOperationsInput | string
   fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  images?: Prisma.CarImageUncheckedUpdateManyWithoutCarNestedInput
+}
+
+export type CarCreateWithoutImagesInput = {
+  marca: string
+  modelo: string
+  anio: string
+  precio?: number
+  info: string
+  fechaVenta?: Date | string | null
+  status?: boolean
+  contactLeads?: Prisma.ContactCreateNestedManyWithoutCarInput
+}
+
+export type CarUncheckedCreateWithoutImagesInput = {
+  id?: number
+  marca: string
+  modelo: string
+  anio: string
+  precio?: number
+  info: string
+  fechaVenta?: Date | string | null
+  status?: boolean
+  contactLeads?: Prisma.ContactUncheckedCreateNestedManyWithoutCarInput
+}
+
+export type CarCreateOrConnectWithoutImagesInput = {
+  where: Prisma.CarWhereUniqueInput
+  create: Prisma.XOR<Prisma.CarCreateWithoutImagesInput, Prisma.CarUncheckedCreateWithoutImagesInput>
+}
+
+export type CarUpsertWithoutImagesInput = {
+  update: Prisma.XOR<Prisma.CarUpdateWithoutImagesInput, Prisma.CarUncheckedUpdateWithoutImagesInput>
+  create: Prisma.XOR<Prisma.CarCreateWithoutImagesInput, Prisma.CarUncheckedCreateWithoutImagesInput>
+  where?: Prisma.CarWhereInput
+}
+
+export type CarUpdateToOneWithWhereWithoutImagesInput = {
+  where?: Prisma.CarWhereInput
+  data: Prisma.XOR<Prisma.CarUpdateWithoutImagesInput, Prisma.CarUncheckedUpdateWithoutImagesInput>
+}
+
+export type CarUpdateWithoutImagesInput = {
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modelo?: Prisma.StringFieldUpdateOperationsInput | string
+  anio?: Prisma.StringFieldUpdateOperationsInput | string
+  precio?: Prisma.FloatFieldUpdateOperationsInput | number
+  info?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contactLeads?: Prisma.ContactUpdateManyWithoutCarNestedInput
+}
+
+export type CarUncheckedUpdateWithoutImagesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  marca?: Prisma.StringFieldUpdateOperationsInput | string
+  modelo?: Prisma.StringFieldUpdateOperationsInput | string
+  anio?: Prisma.StringFieldUpdateOperationsInput | string
+  precio?: Prisma.FloatFieldUpdateOperationsInput | number
+  info?: Prisma.StringFieldUpdateOperationsInput | string
+  fechaVenta?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contactLeads?: Prisma.ContactUncheckedUpdateManyWithoutCarNestedInput
 }
 
 
@@ -563,10 +624,12 @@ export type CarUncheckedUpdateWithoutContactLeadsInput = {
 
 export type CarCountOutputType = {
   contactLeads: number
+  images: number
 }
 
 export type CarCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   contactLeads?: boolean | CarCountOutputTypeCountContactLeadsArgs
+  images?: boolean | CarCountOutputTypeCountImagesArgs
 }
 
 /**
@@ -586,6 +649,13 @@ export type CarCountOutputTypeCountContactLeadsArgs<ExtArgs extends runtime.Type
   where?: Prisma.ContactWhereInput
 }
 
+/**
+ * CarCountOutputType without action
+ */
+export type CarCountOutputTypeCountImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CarImageWhereInput
+}
+
 
 export type CarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -594,10 +664,10 @@ export type CarSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   anio?: boolean
   precio?: boolean
   info?: boolean
-  image?: boolean
   fechaVenta?: boolean
   status?: boolean
   contactLeads?: boolean | Prisma.Car$contactLeadsArgs<ExtArgs>
+  images?: boolean | Prisma.Car$imagesArgs<ExtArgs>
   _count?: boolean | Prisma.CarCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["car"]>
 
@@ -608,7 +678,6 @@ export type CarSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   anio?: boolean
   precio?: boolean
   info?: boolean
-  image?: boolean
   fechaVenta?: boolean
   status?: boolean
 }, ExtArgs["result"]["car"]>
@@ -620,7 +689,6 @@ export type CarSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   anio?: boolean
   precio?: boolean
   info?: boolean
-  image?: boolean
   fechaVenta?: boolean
   status?: boolean
 }, ExtArgs["result"]["car"]>
@@ -632,14 +700,14 @@ export type CarSelectScalar = {
   anio?: boolean
   precio?: boolean
   info?: boolean
-  image?: boolean
   fechaVenta?: boolean
   status?: boolean
 }
 
-export type CarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "marca" | "modelo" | "anio" | "precio" | "info" | "image" | "fechaVenta" | "status", ExtArgs["result"]["car"]>
+export type CarOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "marca" | "modelo" | "anio" | "precio" | "info" | "fechaVenta" | "status", ExtArgs["result"]["car"]>
 export type CarInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   contactLeads?: boolean | Prisma.Car$contactLeadsArgs<ExtArgs>
+  images?: boolean | Prisma.Car$imagesArgs<ExtArgs>
   _count?: boolean | Prisma.CarCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CarIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -649,6 +717,7 @@ export type $CarPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   name: "Car"
   objects: {
     contactLeads: Prisma.$ContactPayload<ExtArgs>[]
+    images: Prisma.$CarImagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -657,7 +726,6 @@ export type $CarPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     anio: string
     precio: number
     info: string
-    image: string
     fechaVenta: Date | null
     status: boolean
   }, ExtArgs["result"]["car"]>
@@ -1055,6 +1123,7 @@ readonly fields: CarFieldRefs;
 export interface Prisma__CarClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   contactLeads<T extends Prisma.Car$contactLeadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Car$contactLeadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  images<T extends Prisma.Car$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Car$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CarImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1090,7 +1159,6 @@ export interface CarFieldRefs {
   readonly anio: Prisma.FieldRef<"Car", 'String'>
   readonly precio: Prisma.FieldRef<"Car", 'Float'>
   readonly info: Prisma.FieldRef<"Car", 'String'>
-  readonly image: Prisma.FieldRef<"Car", 'String'>
   readonly fechaVenta: Prisma.FieldRef<"Car", 'DateTime'>
   readonly status: Prisma.FieldRef<"Car", 'Boolean'>
 }
@@ -1507,6 +1575,30 @@ export type Car$contactLeadsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.ContactScalarFieldEnum | Prisma.ContactScalarFieldEnum[]
+}
+
+/**
+ * Car.images
+ */
+export type Car$imagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CarImage
+   */
+  select?: Prisma.CarImageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CarImage
+   */
+  omit?: Prisma.CarImageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CarImageInclude<ExtArgs> | null
+  where?: Prisma.CarImageWhereInput
+  orderBy?: Prisma.CarImageOrderByWithRelationInput | Prisma.CarImageOrderByWithRelationInput[]
+  cursor?: Prisma.CarImageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CarImageScalarFieldEnum | Prisma.CarImageScalarFieldEnum[]
 }
 
 /**

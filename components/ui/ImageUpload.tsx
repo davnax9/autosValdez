@@ -6,47 +6,56 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { TbPhotoPlus } from 'react-icons/tb'
 
-export default function ImageUpload({image}: {image: string | undefined}) {
+type ImageUploadProps = {
+    images?: string[]
+}
 
-  const [imageUrl, setImageUrl] = useState('')
-  
-  return (
-    <CldUploadWidget uploadPreset="quiosco" options={{ maxFiles: 1 }} onSuccess={(result, {widget}) => {
-        if(result.event === 'success'){
-            widget.close()
-            // @ts-ignore
-            setImageUrl(result.info?.secure_url)
-        }
-    }}>
-        {({open}) => (
-            <>
-                <div className="space-y-2">
-                    <label className="text-slate-800">Imagen Producto</label>
-                    <div onClick={() => open()} 
-                        className="relative cursor-pointer hover:opacity-70 transition p-10 border-neutral-300 flex flex-col justify-center items-center gap-4 text-neutral-600 bg-slate-100">
-                        <TbPhotoPlus size={50} />
-                        <p className="text-lg font-semibold">Agregar Imagen</p>
+export default function ImageUpload({ images = [] }: ImageUploadProps) {
 
-                        {imageUrl && (
-                            <div className="absolute inset-0 w-full h-full">
-                                <Image fill style={{objectFit: 'contain'}} src={imageUrl} alt='Imagen de producto' />
-                            </div>
-                        )}
-                    </div>
-                </div>
+    const [imageUrls, setImageUrls] = useState<string[]>([])
 
-                {image && !imageUrl && (
+    const allImages = [...images, ...imageUrls]
+
+    return (
+        <CldUploadWidget uploadPreset="quiosco" options={{ maxFiles: 10, multiple: true }}
+            onSuccess={(result, { widget }) => {
+                if (result.event === 'success') {
+                    // @ts-ignore
+                    const url = result.info?.secure_url
+                    if (url) {
+                        setImageUrls(prev => [...prev, url])
+                    }
+                }
+            }}
+        >
+            {({ open }) => (
+                <>
                     <div className="space-y-2">
-                        <label htmlFor="">Imagen Actual:</label>
-                        <div className="relative w-64 h-64">
-                            <Image fill src={getImagePath(image)} alt='Imagen Producto' style={{objectFit: 'contain'}} />
+                        <label className="text-slate-800">Imágenes del vehículo</label>
+                        <div onClick={() => open()} className="cursor-pointer hover:opacity-70 transition p-10 border border-neutral-300 flex flex-col justify-center items-center gap-4
+                            text-neutral-600 bg-slate-100"
+                        >
+                            <TbPhotoPlus size={50} />
+                            <p className="text-lg font-semibold">Agregar imágenes</p>
                         </div>
                     </div>
-                )}
 
-                <input type="hidden" name='image' defaultValue={imageUrl ? imageUrl : image} />
-            </>
-        )}
-    </CldUploadWidget>
-  )
+                    {allImages.length > 0 && (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                            {allImages.map((image, index) => (
+                                <div key={`${image}-${index}`} className="relative aspect-square">
+                                    <Image fill src={image.startsWith('http') ? image : getImagePath(image)} alt={`Imagen ${index + 1}`} className="object-cover rounded-lg"/>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Enviar las imágenes al formulario */}
+                    {allImages.map((image, index) => (
+                        <input key={index} type="hidden" name="images" value={image} readOnly/>
+                    ))}
+                </>
+            )}
+        </CldUploadWidget>
+    )
 }

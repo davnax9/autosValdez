@@ -11,7 +11,7 @@ export const CarSchema = z.object({
     precio: z.string().trim().transform((value) => parseFloat(value)) 
         .refine((value) => value > 0, { message: 'Precio no válido' }),
     info: z.string().trim().min(1, { message: 'La información del vehiculo no puede ir vacia'}),
-    image: z.string().min(1, {message: 'La imagen es obligatoria'})
+    images: z.array(z.string().url("URL de imagen no válida")).min(1, { message: "Debes agregar al menos una imagen" })
 })
 
 export const contactLeadSchema = z.object({

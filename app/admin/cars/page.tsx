@@ -1,7 +1,6 @@
 import AddCarForm from "@/components/cars/AddCarForm";
 import CarForm from "@/components/cars/CarForm";
 
-
 export default function page() {
   return (
     <>

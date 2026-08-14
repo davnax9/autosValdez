@@ -15,7 +15,10 @@ async function getCars(page: number, pageSize: number) {
 
   const cars = await prisma.car.findMany({
     take: pageSize,
-    skip: skip
+    skip: skip,
+    include: {
+      images: true
+    }
   })
   return cars
 }
@@ -37,7 +40,9 @@ export default async function page({searchParams}: {searchParams: Promise<{ page
   const [ cars, totalCars ] = await Promise.all([carsData, totalCarsData])
   const totalPages = Math.ceil(totalCars / pageSize)
 
-  if(pagex > totalPages) redirect('/admin')
+  if(totalPages > 0 && pagex > totalPages) {
+    redirect('/admin')
+  }
 
   return (
     <>

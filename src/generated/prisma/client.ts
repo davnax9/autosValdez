@@ -51,3 +51,8 @@ export type Car = Prisma.CarModel
  * 
  */
 export type Contact = Prisma.ContactModel
+/**
+ * Model CarImage
+ * 
+ */
+export type CarImage = Prisma.CarImageModel

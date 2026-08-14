@@ -18,6 +18,9 @@ async function getCars(page: number, pageSize: number) {
     where: {
       status: false
     },
+    include: {
+        images: true
+    },
     take: pageSize,
     skip: skip
   })
