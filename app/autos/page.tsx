@@ -1,6 +1,7 @@
 import CarsCard from "@/components/cars/CarsCard";
 import CarsPagination from "@/components/cars/CarsPagination";
 import prisma from "@/lib/prisma";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 async function carsCount() {
@@ -45,7 +46,13 @@ export default async function AutosPage({searchParams}: {searchParams: Promise<{
 
   return (
     <>
-      <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold my-4 mx-2 text-black text-center">Catálogo de vehículos</h1>
+      <div className="relative flex items-center justify-center my-4 mx-2">
+        <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold my-4 mx-2 text-black text-center">Catálogo de vehículos</h1>
+        <Link href="/autos/vendidos" className="absolute right-0 bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-bold text-sm sm:text-base">
+            Vendidos
+        </Link>
+      </div>
+
       <div className="grid grid-cols-1 mt-2 mx-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 items-start xl:mx-10 xl:mt-5">
           {cars.map(car => (
             <CarsCard key={car.id} car={car}/>
