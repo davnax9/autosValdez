@@ -11,7 +11,7 @@ export default function Header() {
         </div>
 
         <div className="flex justify-center">
-          <a href="/admin"><Title>Autos Valdez</Title></a>
+          <a href="/admin"><Title>GMJ Motors</Title></a>
         </div>
 
         <div className="flex justify-center md:justify-end gap-3">
